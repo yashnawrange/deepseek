@@ -1,696 +1,714 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>Yash Nawarange | Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-  <style>
-    /* --- Variables for Easy Theming --- */
-    :root {
-      --primary-blue: #2575fc;
-      --secondary-purple: #6a11cb;
-      --accent-green: #00ffd5;
-      --dark-bg-start: #1a2a3a;
-      --dark-bg-end: #0a1520;
-      --text-light: #e0e0e0;
-      --text-dark: #1a2a3a;
-      --card-bg: rgba(255, 255, 255, 0.08);
-      --border-glow: rgba(0, 255, 213, 0.7);
-      --box-shadow-dark: rgba(0, 0, 0, 0.4);
-      --box-shadow-light: rgba(0, 0, 0, 0.2);
-      --body-bg-gradient: linear-gradient(135deg, var(--dark-bg-start), var(--dark-bg-end));
-      --header-bg-gradient: linear-gradient(135deg, var(--secondary-purple) 0%, var(--primary-blue) 100%);
-      --nav-bg: rgba(17, 17, 17, 0.95);
-      --section-bg: var(--card-bg);
-      --section-border: rgba(255, 255, 255, 0.1);
-      --footer-bg: rgba(0, 0, 0, 0.8);
-      --product-card-shadow: 0 8px 20px var(--box-shadow-dark);
-      --product-card-hover-shadow: 0 15px 35px var(--box-shadow-dark), 0 0 25px var(--accent-green);
-    }
-
-    /* Light Mode */
-    body.light-mode {
-      --body-bg-gradient: linear-gradient(135deg, #e0f2f7, #bbdefb);
-      --text-light: #333;
-      --text-dark: #eee;
-      --card-bg: rgba(255, 255, 255, 0.7);
-      --header-bg-gradient: linear-gradient(135deg, #81d4fa 0%, #4fc3f7 100%);
-      --nav-bg: rgba(255, 255, 255, 0.95);
-      --section-bg: rgba(255, 255, 255, 0.9);
-      --section-border: rgba(0, 0, 0, 0.1);
-      --footer-bg: rgba(200, 200, 200, 0.8);
-      --box-shadow-dark: rgba(0, 0, 0, 0.2);
-      --box-shadow-light: rgba(0, 0, 0, 0.1);
-      --product-card-shadow: 0 8px 20px rgba(0,0,0,0.1);
-      --product-card-hover-shadow: 0 15px 35px rgba(0,0,0,0.2), 0 0 25px #4fc3f7;
-      color: var(--text-light);
-    }
-
-    /* Base styles optimized for mobile */
-    body {
-      font-family: 'Exo 2', sans-serif;
-      background: var(--body-bg-gradient);
-      color: var(--text-light);
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-      line-height: 1.6;
-      font-size: 16px;
-      -webkit-text-size-adjust: 100%;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    /* Simplified glow effects for mobile performance */
-    body::before, body::after {
-      content: '';
-      position: fixed;
-      filter: blur(60px);
-      z-index: -1;
-      opacity: 0.15;
-      width: 150px;
-      height: 150px;
-    }
-
-    body::before {
-      top: -50px;
-      left: -50px;
-      background: radial-gradient(circle, var(--accent-green) 0%, transparent 60%);
-    }
-
-    body::after {
-      bottom: -50px;
-      right: -50px;
-      background: radial-gradient(circle, var(--primary-blue) 0%, transparent 60%);
-    }
-
-    /* Header optimized for mobile */
-    header {
-      text-align: center;
-      padding: 40px 15px 30px;
-      background: var(--header-bg-gradient);
-      color: white;
-      font-family: 'Orbitron', sans-serif;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 5px 15px var(--box-shadow-dark);
-      border-bottom: 1px solid var(--accent-green);
-    }
-
-    .header-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .header-container img {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--accent-green);
-      box-shadow: 0 4px 15px rgba(0, 255, 213, 0.6);
-    }
-
-    header h1 {
-      font-size: 1.8rem;
-      margin: 10px 0 5px;
-      background: linear-gradient(45deg, #00ffd5, #8effd0, #00ffd5);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 10px rgba(0, 255, 213, 0.5);
-    }
-
-    header p {
-      font-size: 1rem;
-      margin: 0;
-      background: linear-gradient(90deg, var(--secondary-purple), var(--primary-blue));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: 600;
-    }
-
-    /* Mobile navigation */
-    nav {
-      background: var(--nav-bg);
-      backdrop-filter: blur(5px);
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 10px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 4px 10px var(--box-shadow-dark);
-      border-bottom: 1px solid rgba(0, 255, 213, 0.2);
-    }
-
-    nav a {
-      color: var(--text-light);
-      text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      white-space: nowrap;
-      transition: all 0.2s ease;
-    }
-
-    nav a.active, nav a:hover {
-      background: linear-gradient(45deg, var(--primary-blue), var(--accent-green));
-      color: var(--text-dark);
-      transform: translateY(-2px);
-    }
-
-    .cart-count {
-      background: #e74c3c;
-      border-radius: 50%;
-      padding: 2px 6px;
-      font-size: 0.8rem;
-      margin-left: 5px;
-    }
-
-    /* Mobile sections */
-    section {
-      padding: 30px 15px;
-      margin: 20px 10px;
-      background: var(--section-bg);
-      border-radius: 15px;
-      box-shadow: 0 5px 15px var(--box-shadow-dark);
-      border: 1px solid var(--section-border);
-      backdrop-filter: blur(5px);
-    }
-
-    h2 {
-      font-size: 1.8rem;
-      text-align: center;
-      margin-bottom: 25px;
-      color: var(--accent-green);
-      font-family: 'Orbitron', sans-serif;
-      text-shadow: 0 0 8px rgba(0, 255, 213, 0.7);
-      background: linear-gradient(90deg, transparent, var(--accent-green), transparent);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      padding-bottom: 10px;
-    }
-
-    p, li {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: var(--text-light);
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    ul li {
-      position: relative;
-      padding-left: 28px;
-      margin-bottom: 12px;
-    }
-
-    ul li::before {
-      content: '⚡';
-      position: absolute;
-      left: 0;
-      color: var(--accent-green);
-      font-size: 1.1em;
-    }
-
-    /* Video wrapper for mobile */
-    .video-wrapper iframe {
-      width: 100%;
-      height: 200px;
-      border-radius: 12px;
-      margin: 20px auto;
-      border: 2px solid var(--primary-blue);
-    }
-
-    /* Products grid for mobile */
-    .products {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-
-    .product {
-      background: var(--card-bg);
-      border-radius: 15px;
-      padding: 15px;
-      text-align: center;
-      box-shadow: var(--product-card-shadow);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .product img {
-      width: 100%;
-      height: 150px;
-      object-fit: contain;
-      border-radius: 10px;
-    }
-
-    .product p {
-      font-size: 1.1rem;
-      margin: 10px 0;
-      color: var(--accent-green);
-    }
-
-    .product button {
-      margin-top: 10px;
-      padding: 8px 15px;
-      background: linear-gradient(45deg, var(--accent-green), var(--primary-blue));
-      color: var(--text-dark);
-      border: none;
-      border-radius: 6px;
-      font-size: 0.9rem;
-    }
-
-    /* Contact section */
-    #contact a {
-      color: var(--accent-green);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    #contact iframe {
-      border: 2px solid var(--accent-green);
-      width: 100%;
-      height: 250px;
-      border-radius: 12px;
-      margin-top: 20px;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: var(--footer-bg);
-      font-size: 0.9rem;
-    }
-
-    /* Scroll to top button */
-    #scrollToTopBtn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(45deg, var(--primary-blue), var(--secondary-purple));
-      color: white;
-      border: none;
-      border-radius: 50%;
-      font-size: 1.1rem;
-      display: none;
-      z-index: 999;
-    }
-
-    #scrollToTopBtn.show {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Theme toggle */
-    #themeToggle {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      width: 40px;
-      height: 40px;
-      background: var(--nav-bg);
-      color: var(--text-light);
-      border: 1px solid var(--accent-green);
-      border-radius: 50%;
-      font-size: 1rem;
-      z-index: 1001;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Confetti for mobile */
-    .confetti-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 2000;
-    }
-
-    .confetti {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      opacity: 0;
-      animation: confetti-fall 1.5s forwards;
-    }
-
-    /* Keyframe animations simplified for mobile */
-    @keyframes confetti-fall {
-      0% {
-        transform: translate(0, 0) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translate(var(--x), var(--y)) rotate(var(--r));
-        opacity: 0;
-      }
-    }
-
-    /* Media queries for very small devices */
-    @media (max-width: 360px) {
-      header h1 {
-        font-size: 1.5rem;
-      }
-      header p {
-        font-size: 0.9rem;
-      }
-      nav a {
-        padding: 6px 10px;
-        font-size: 0.85rem;
-      }
-      section {
-        padding: 25px 12px;
-      }
-      h2 {
-        font-size: 1.6rem;
-      }
-      .video-wrapper iframe {
-        height: 180px;
-      }
-    }
-
-    /* Landscape orientation adjustments */
-    @media (max-height: 500px) and (orientation: landscape) {
-      header {
-        padding: 20px 15px;
-      }
-      .header-container {
-        flex-direction: row;
-        gap: 20px;
-      }
-      .header-container img {
-        width: 70px;
-        height: 70px;
-      }
-      header h1 {
-        font-size: 1.5rem;
-        margin: 0 0 5px;
-      }
-      nav {
-        padding: 8px 5px;
-      }
-      nav a {
-        padding: 6px 8px;
-        font-size: 0.8rem;
-      }
-      section {
-        padding: 20px 12px;
-        margin: 15px 8px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <header id="mainHeader">
-    <div class="header-container">
-      <img src="yashhhhihoih.PNG" alt="Yash Nawarange">
-      <div>
-        <h1>Yash Nawarange</h1>
-        <p>HTML | CSS | JavaScript | AR/VR | Python</p>
-      </div>
-    </div>
-  </header>
-
-  <nav id="mainNav">
-    <a href="#about" class="nav-link">About</a>
-    <a href="#projects" class="nav-link">Projects</a>
-    <a href="#products" class="nav-link">Products <span class="cart-count" id="cartCount">0</span></a>
-    <a href="#goals" class="nav-link">Goals</a>
-    <a href="#interests" class="nav-link">Interests</a>
-    <a href="#contact" class="nav-link">Contact</a>
-  </nav>
-
-  <section id="about">
-    <h2>About Me</h2>
-    <p><strong>// BIOGRAPHY</strong><br>
-      I'm a passionate developer who loves turning ideas into real, working products. Whether it's designing clean UI/UX for web apps, building backend logic, or experimenting with new technologies, I'm always up for a challenge.
-    </p>
-    <p><strong>// PERSONAL DETAILS</strong></p>
-    <ul>
-      <li>Name: Yash Nawarange</li>
-      <li>Address: Dahanu, Maharashtra</li>
-      <li>Study: St. John College of Engineering and Management</li>
-      <li>Degree: B-Tech in Computer Engineering</li>
-      <li>Mail: 123yash2133@sjcem.edu.in</li>
-      <li>Phone: 7498533950</li>
-    </ul>
-  </section>
-
-  <div class="video-wrapper">
-    <iframe src="https://www.youtube.com/embed/t705Jg8J6XU" title="A Relevant YouTube Video About My Work" frameborder="0" allowfullscreen></iframe>
-  </div>
-
-  <section id="projects">
-    <h2>Projects</h2>
-    <ul>
-      <li>Built a full-stack notes app with login, search, and dark mode</li>
-      <li>Created a first-person shooter prototype in Unity using C#</li>
-      <li>Designed and deployed responsive portfolio and blog websites</li>
-      <li>Explored backend development using Node.js, Express, and MongoDB</li>
-      <li>Dabbled in Python for automation scripts and data parsing</li>
-    </ul>
-  </section>
-
-  <section id="products">
-    <h2>Products</h2>
-    <div class="products">
-      <div class="product">
-        <a href="https://www.amazon.in/dp/B08N5WRWNW" target="_blank">
-          <img src="https://m.media-amazon.com/images/I/61mIUCd-37L._SX679_.jpg" alt="RGB Gaming Mouse">
-        </a>
-        <p>RGB Gaming Mouse</p>
-        <button onclick="addToCart(event)">Add to Cart</button>
-      </div>
-      <div class="product">
-        <a href="https://www.amazon.in/dp/B07WHS7D9P" target="_blank">
-          <img src="https://m.media-amazon.com/images/I/81Zt42ioCgL._SX679_.jpg" alt="Mechanical Keyboard">
-        </a>
-        <p>Mechanical Keyboard</p>
-        <button onclick="addToCart(event)">Add to Cart</button>
-      </div>
-      <div class="product">
-        <a href="https://www.amazon.in/dp/B098T2WGD1" target="_blank">
-          <img src="https://m.media-amazon.com/images/I/81rkZyPRvML._SX679_.jpg" alt="HD Webcam">
-        </a>
-        <p>HD Webcam</p>
-        <button onclick="addToCart(event)">Add to Cart</button>
-      </div>
-    </div>
-  </section>
-
-  <section id="goals">
-    <h2>Goals</h2>
-    <ul>
-      <li>🌟 Master full-stack development with scalable cloud infrastructure</li>
-      <li>🤖 Build AI-powered web applications with machine learning</li>
-      <li>🎮 Develop a multiplayer FPS game using Unity</li>
-      <li>📱 Launch cross-platform mobile apps with Flutter</li>
-      <li>🔧 Contribute to open-source developer tools</li>
-    </ul>
-  </section>
-
-  <section id="interests">
-    <h2>Interests</h2>
-    <ul>
-      <li>🎨 Art: I enjoy sketching and digital design</li>
-      <li>🎬 Movies: Sci-fi and superhero films</li>
-      <li>♟️ Chess: For mental exercise and strategy</li>
-    </ul>
-  </section>
-
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <p>Email: <a href="mailto:123yash2133@sjcem.edu.in">123yash2133@sjcem.edu.in</a></p>
-    <p>Phone: <a href="tel:+917498533950">+91 74985 33950</a></p>
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3753.8449767222374!2d72.7759530752158!3d19.800049781619866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be723466141443b%3A0x103a8917804473e0!2sSt.%20John%20College%20of%20Engineering%20and%20Management!5e0!3m2!1sen!2sin!4v1701980838634!5m2!1sen!2sin"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-      title="St John College of Engineering and Management, Palghar"
-    ></iframe>
-  </section>
-
-  <footer>
-    <p>© 2025 Yash Nawarange. All rights reserved.</p>
-  </footer>
-
-  <button id="scrollToTopBtn" title="Go to top">
-    <i class="fas fa-arrow-up"></i>
-  </button>
-
-  <button id="themeToggle" title="Toggle Light/Dark Mode">
-    <i class="fas fa-moon"></i>
-  </button>
-
-  <div class="confetti-container" id="confettiContainer"></div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script>
-    // Initialize AOS with mobile-friendly settings
-    AOS.init({
-      once: true,
-      offset: 50,
-      duration: 600,
-      easing: 'ease-out-sine',
-      disable: window.innerWidth < 768
-    });
-
-    // Cart functionality
-    let cartCount = 0;
-    const cartCountElement = document.getElementById("cartCount");
-    const confettiContainer = document.getElementById("confettiContainer");
-
-    function addToCart(event) {
-      cartCount++;
-      cartCountElement.innerText = cartCount;
-      
-      // Trigger pulse animation
-      cartCountElement.style.animation = 'none';
-      void cartCountElement.offsetWidth;
-      cartCountElement.style.animation = 'pulse 1s';
-      
-      // Confetti effect
-      const btn = event.target;
-      const rect = btn.getBoundingClientRect();
-      const btnCenterX = rect.left + rect.width / 2;
-      const btnCenterY = rect.top + rect.height / 2;
-      
-      spawnConfetti(btnCenterX, btnCenterY);
-    }
-
-    function spawnConfetti(x, y) {
-      const colors = ['#00ffd5', '#2575fc', '#6a11cb', '#e74c3c', '#f1c40f'];
-      const numConfetti = 25;
-      
-      for (let i = 0; i < numConfetti; i++) {
-        const confetti = document.createElement('div');
-        confetti.classList.add('confetti');
-        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        confetti.style.left = `${x}px`;
-        confetti.style.top = `${y}px`;
-        
-        const angle = Math.random() * Math.PI * 2;
-        const distance = Math.random() * 100;
-        const targetX = x + distance * Math.cos(angle);
-        const targetY = y + distance * Math.sin(angle);
-        
-        confetti.style.setProperty('--x', `${targetX - x}px`);
-        confetti.style.setProperty('--y', `${targetY - y + 80}px`);
-        confetti.style.setProperty('--r', `${Math.random() * 360}deg`);
-        
-        confettiContainer.appendChild(confetti);
-        
-        confetti.addEventListener('animationend', () => {
-          confetti.remove();
-        });
-      }
-    }
-
-    // Smooth scrolling for navigation
-    document.querySelectorAll('nav a').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-        
-        // Update active nav link
-        document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
-        this.classList.add('active');
-      });
-    });
-
-    // Highlight active nav link on scroll
-    window.addEventListener('scroll', () => {
-      const scrollPosition = window.scrollY;
-      
-      document.querySelectorAll('section').forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionHeight = section.clientHeight;
-        const sectionId = section.getAttribute('id');
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-          document.querySelectorAll('nav a').forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${sectionId}`) {
-              link.classList.add('active');
-            }
-          });
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Yash Nawarange | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        /* --- Variables for Easy Theming --- */
+        :root {
+            --primary-blue: #2575fc;
+            --secondary-purple: #6a11cb;
+            --accent-green: #00ffd5;
+            --dark-bg-start: #1a2a3a;
+            --dark-bg-end: #0a1520;
+            --text-light: #e0e0e0;
+            --text-dark: #1a2a3a;
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --border-glow: rgba(0, 255, 213, 0.7);
+            --box-shadow-dark: rgba(0, 0, 0, 0.4);
+            --box-shadow-light: rgba(0, 0, 0, 0.2);
+            --body-bg-gradient: linear-gradient(135deg, var(--dark-bg-start), var(--dark-bg-end));
+            --header-bg-gradient: linear-gradient(135deg, var(--secondary-purple) 0%, var(--primary-blue) 100%);
+            --nav-bg: rgba(17, 17, 17, 0.95);
+            --section-bg: var(--card-bg);
+            --section-border: rgba(255, 255, 255, 0.1);
+            --footer-bg: rgba(0, 0, 0, 0.8);
+            --product-card-shadow: 0 8px 20px var(--box-shadow-dark);
+            --product-card-hover-shadow: 0 15px 35px var(--box-shadow-dark), 0 0 25px var(--accent-green);
         }
-      });
-      
-      // Show/hide scroll to top button
-      if (window.scrollY > 300) {
-        document.getElementById('scrollToTopBtn').classList.add('show');
-      } else {
-        document.getElementById('scrollToTopBtn').classList.remove('show');
-      }
-    });
 
-    // Scroll to top button
-    document.getElementById('scrollToTopBtn').addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
+        /* Light Mode */
+        body.light-mode {
+            --body-bg-gradient: linear-gradient(135deg, #e0f2f7, #bbdefb);
+            --text-light: #333;
+            --text-dark: #eee;
+            --card-bg: rgba(255, 255, 255, 0.7);
+            --header-bg-gradient: linear-gradient(135deg, #81d4fa 0%, #4fc3f7 100%);
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --section-bg: rgba(255, 255, 255, 0.9);
+            --section-border: rgba(0, 0, 0, 0.1);
+            --footer-bg: rgba(200, 200, 200, 0.8);
+            --box-shadow-dark: rgba(0, 0, 0, 0.2);
+            --box-shadow-light: rgba(0, 0, 0, 0.1);
+            --product-card-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            --product-card-hover-shadow: 0 15px 35px rgba(0, 0, 0, 0.2), 0 0 25px #4fc3f7;
+            color: var(--text-light);
+        }
 
-    // Theme toggle
-    const themeToggle = document.getElementById('themeToggle');
-    const body = document.body;
-    
-    // Check for saved theme preference
-    const currentTheme = localStorage.getItem('theme');
-    if (currentTheme === 'light-mode') {
-      body.classList.add('light-mode');
-      themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-    }
-    
-    themeToggle.addEventListener('click', () => {
-      body.classList.toggle('light-mode');
-      
-      if (body.classList.contains('light-mode')) {
-        localStorage.setItem('theme', 'light-mode');
-        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-      } else {
-        localStorage.setItem('theme', 'dark-mode');
-        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-      }
-    });
+        /* Base styles optimized for mobile */
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: var(--body-bg-gradient);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            line-height: 1.6;
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-    // Touch event improvements
-    document.addEventListener('touchstart', function() {}, {passive: true});
-    
-    // Prevent zooming on double-tap
-    document.addEventListener('dblclick', function(e) {
-      e.preventDefault();
-    }, { passive: false });
-    
-    // Initialize with active nav link
-    document.querySelector('nav a[href="#about"]').classList.add('active');
-  </script>
+        /* Simplified glow effects for mobile performance */
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            filter: blur(60px);
+            z-index: -1;
+            opacity: 0.15;
+            width: 150px;
+            height: 150px;
+        }
+
+        body::before {
+            top: -50px;
+            left: -50px;
+            background: radial-gradient(circle, var(--accent-green) 0%, transparent 60%);
+        }
+
+        body::after {
+            bottom: -50px;
+            right: -50px;
+            background: radial-gradient(circle, var(--primary-blue) 0%, transparent 60%);
+        }
+
+        /* Header optimized for mobile */
+        header {
+            text-align: center;
+            padding: 40px 15px 30px;
+            background: var(--header-bg-gradient);
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--box-shadow-dark);
+            border-bottom: 1px solid var(--accent-green);
+        }
+
+        .header-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-container img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-green);
+            box-shadow: 0 4px 15px rgba(0, 255, 213, 0.6);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin: 10px 0 5px;
+            background: linear-gradient(45deg, #00ffd5, #8effd0, #00ffd5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(0, 255, 213, 0.5);
+        }
+
+        header p {
+            font-size: 1rem;
+            margin: 0;
+            background: linear-gradient(90deg, var(--secondary-purple), var(--primary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+
+        /* Mobile navigation */
+        nav {
+            background: var(--nav-bg);
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px var(--box-shadow-dark);
+            border-bottom: 1px solid rgba(0, 255, 213, 0.2);
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        nav a.active,
+        nav a:hover {
+            background: linear-gradient(45deg, var(--primary-blue), var(--accent-green));
+            color: var(--text-dark);
+            transform: translateY(-2px);
+        }
+
+        .cart-count {
+            background: #e74c3c;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.8rem;
+            margin-left: 5px;
+        }
+
+        /* Mobile sections */
+        section {
+            padding: 30px 15px;
+            margin: 20px 10px;
+            background: var(--section-bg);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--box-shadow-dark);
+            border: 1px solid var(--section-border);
+            backdrop-filter: blur(5px);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--accent-green);
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 8px rgba(0, 255, 213, 0.7);
+            background: linear-gradient(90deg, transparent, var(--accent-green), transparent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding-bottom: 10px;
+        }
+
+        p,
+        li {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-light);
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+        }
+
+        ul li::before {
+            content: '⚡';
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+            font-size: 1.1em;
+        }
+
+        /* Video wrapper for mobile */
+        .video-wrapper iframe {
+            width: 100%;
+            height: 200px;
+            border-radius: 12px;
+            margin: 20px auto;
+            border: 2px solid var(--primary-blue);
+        }
+
+        /* Products grid for mobile */
+        .products {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .product {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: var(--product-card-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .product img {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .product p {
+            font-size: 1.1rem;
+            margin: 10px 0;
+            color: var(--accent-green);
+        }
+
+        .product button {
+            margin-top: 10px;
+            padding: 8px 15px;
+            background: linear-gradient(45deg, var(--accent-green), var(--primary-blue));
+            color: var(--text-dark);
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        /* Contact section */
+        #contact a {
+            color: var(--accent-green);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        #contact iframe {
+            border: 2px solid var(--accent-green);
+            width: 100%;
+            height: 250px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: var(--footer-bg);
+            font-size: 0.9rem;
+        }
+
+        /* Scroll to top button */
+        #scrollToTopBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, var(--primary-blue), var(--secondary-purple));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            display: none;
+            z-index: 999;
+        }
+
+        #scrollToTopBtn.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Theme toggle */
+        #themeToggle {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            background: var(--nav-bg);
+            color: var(--text-light);
+            border: 1px solid var(--accent-green);
+            border-radius: 50%;
+            font-size: 1rem;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Confetti for mobile */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2000;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            opacity: 0;
+            animation: confetti-fall 1.5s forwards;
+        }
+
+        /* Keyframe animations simplified for mobile */
+        @keyframes confetti-fall {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(var(--x), var(--y)) rotate(var(--r));
+                opacity: 0;
+            }
+        }
+
+        /* Media queries for very small devices */
+        @media (max-width: 360px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            header p {
+                font-size: 0.9rem;
+            }
+
+            nav a {
+                padding: 6px 10px;
+                font-size: 0.85rem;
+            }
+
+            section {
+                padding: 25px 12px;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+
+            .video-wrapper iframe {
+                height: 180px;
+            }
+        }
+
+        /* Landscape orientation adjustments */
+        @media (max-height: 500px) and (orientation: landscape) {
+            header {
+                padding: 20px 15px;
+            }
+
+            .header-container {
+                flex-direction: row;
+                gap: 20px;
+            }
+
+            .header-container img {
+                width: 70px;
+                height: 70px;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+                margin: 0 0 5px;
+            }
+
+            nav {
+                padding: 8px 5px;
+            }
+
+            nav a {
+                padding: 6px 8px;
+                font-size: 0.8rem;
+            }
+
+            section {
+                padding: 20px 12px;
+                margin: 15px 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header id="mainHeader">
+        <div class="header-container">
+            <img src="yashhhhihoih.PNG" alt="Yash Nawarange">
+            <div>
+                <h1>Yash Nawarange</h1>
+                <p>HTML | CSS | JavaScript | AR/VR | Python</p>
+            </div>
+        </div>
+    </header>
+
+    <nav id="mainNav">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#products" class="nav-link">Products <span class="cart-count" id="cartCount">0</span></a>
+        <a href="#goals" class="nav-link">Goals</a>
+        <a href="#interests" class="nav-link">Interests</a>
+        <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p><strong>// BIOGRAPHY</strong><br>
+            I'm a passionate developer who loves turning ideas into real, working products. Whether it's designing clean
+            UI/UX for web apps, building backend logic, or experimenting with new technologies, I'm always up for a
+            challenge.
+        </p>
+        <p><strong>// PERSONAL DETAILS</strong></p>
+        <ul>
+            <li>Name: Yash Nawarange</li>
+            <li>Address: Dahanu, Maharashtra</li>
+            <li>Study: St. John College of Engineering and Management</li>
+            <li>Degree: B-Tech in Computer Engineering</li>
+            <li>Mail: 123yash2133@sjcem.edu.in</li>
+            <li>Phone: 7498533950</li>
+        </ul>
+    </section>
+
+    <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/QubLEQuRWgw" title="A Relevant YouTube Video About My Work"
+            frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <ul>
+            <li>Built a full-stack notes app with login, search, and dark mode</li>
+            <li>Created a first-person shooter prototype in Unity using C#</li>
+            <li>Designed and deployed responsive portfolio and blog websites</li>
+            <li>Explored backend development using Node.js, Express, and MongoDB</li>
+            <li>Dabbled in Python for automation scripts and data parsing</li>
+        </ul>
+    </section>
+
+    <section id="products">
+        <h2>Products</h2>
+        <div class="products">
+            <div class="product">
+                <a href="https://www.amazon.in/dp/B08N5WRWNW" target="_blank">
+                    <img src="https://m.media-amazon.com/images/I/61mIUCd-37L._SX679_.jpg" alt="RGB Gaming Mouse">
+                </a>
+                <p>RGB Gaming Mouse</p>
+                <button onclick="addToCart(event)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <a href="https://www.amazon.in/dp/B07WHS7D9P" target="_blank">
+                    <img src="https://m.media-amazon.com/images/I/81Zt42ioCgL._SX679_.jpg" alt="Mechanical Keyboard">
+                </a>
+                <p>Mechanical Keyboard</p>
+                <button onclick="addToCart(event)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <a href="https://www.amazon.in/dp/B098T2WGD1" target="_blank">
+                    <img src="https://m.media-amazon.com/images/I/81rkZyPRvML._SX679_.jpg" alt="HD Webcam">
+                </a>
+                <p>HD Webcam</p>
+                <button onclick="addToCart(event)">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="goals">
+        <h2>Goals</h2>
+        <ul>
+            <li>🌟 Master full-stack development with scalable cloud infrastructure</li>
+            <li>🤖 Build AI-powered web applications with machine learning</li>
+            <li>🎮 Develop a multiplayer FPS game using Unity</li>
+            <li>📱 Launch cross-platform mobile apps with Flutter</li>
+            <li>🔧 Contribute to open-source developer tools</li>
+        </ul>
+    </section>
+
+    <section id="interests">
+        <h2>Interests</h2>
+        <ul>
+            <li>🎨 Art: I enjoy sketching and digital design</li>
+            <li>🎬 Movies: Sci-fi and superhero films</li>
+            <li>♟️ Chess: For mental exercise and strategy</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>Email: <a href="mailto:123yash2133@sjcem.edu.in">123yash2133@sjcem.edu.in</a></p>
+        <p>Phone: <a href="tel:+917498533950">+91 74985 33950</a></p>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3753.8449767222374!2d72.7759530752158!3d19.800049781619866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be723466141443b%3A0x103a8917804473e0!2sSt.%20John%20College%20of%20Engineering%20and%20Management!5e0!3m2!1sen!2sin!4v1701980838634!5m2!1sen!2sin"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="St John College of Engineering and Management, Palghar"></iframe>
+    </section>
+
+    <footer>
+        <p>© 2025 Yash Nawarange. All rights reserved.</p>
+    </footer>
+
+    <button id="scrollToTopBtn" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <button id="themeToggle" title="Toggle Light/Dark Mode">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS with mobile-friendly settings
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 600,
+            easing: 'ease-out-sine',
+            disable: window.innerWidth < 768
+        });
+
+        // Cart functionality
+        let cartCount = 0;
+        const cartCountElement = document.getElementById("cartCount");
+        const confettiContainer = document.getElementById("confettiContainer");
+
+        function addToCart(event) {
+            cartCount++;
+            cartCountElement.innerText = cartCount;
+
+            // Trigger pulse animation
+            cartCountElement.style.animation = 'none';
+            void cartCountElement.offsetWidth;
+            cartCountElement.style.animation = 'pulse 1s';
+
+            // Confetti effect
+            const btn = event.target;
+            const rect = btn.getBoundingClientRect();
+            const btnCenterX = rect.left + rect.width / 2;
+            const btnCenterY = rect.top + rect.height / 2;
+
+            spawnConfetti(btnCenterX, btnCenterY);
+        }
+
+        function spawnConfetti(x, y) {
+            const colors = ['#00ffd5', '#2575fc', '#6a11cb', '#e74c3c', '#f1c40f'];
+            const numConfetti = 25;
+
+            for (let i = 0; i < numConfetti; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = `${x}px`;
+                confetti.style.top = `${y}px`;
+
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 100;
+                const targetX = x + distance * Math.cos(angle);
+                const targetY = y + distance * Math.sin(angle);
+
+                confetti.style.setProperty('--x', `${targetX - x}px`);
+                confetti.style.setProperty('--y', `${targetY - y + 80}px`);
+                confetti.style.setProperty('--r', `${Math.random() * 360}deg`);
+
+                confettiContainer.appendChild(confetti);
+
+                confetti.addEventListener('animationend', () => {
+                    confetti.remove();
+                });
+            }
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Update active nav link
+                document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Highlight active nav link on scroll
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    document.querySelectorAll('nav a').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+
+            // Show/hide scroll to top button
+            if (window.scrollY > 300) {
+                document.getElementById('scrollToTopBtn').classList.add('show');
+            } else {
+                document.getElementById('scrollToTopBtn').classList.remove('show');
+            }
+        });
+
+        // Scroll to top button
+        document.getElementById('scrollToTopBtn').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        // Check for saved theme preference
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'light-mode') {
+            body.classList.add('light-mode');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+
+            if (body.classList.contains('light-mode')) {
+                localStorage.setItem('theme', 'light-mode');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                localStorage.setItem('theme', 'dark-mode');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        });
+
+        // Touch event improvements
+        document.addEventListener('touchstart', function () { }, { passive: true });
+
+        // Prevent zooming on double-tap
+        document.addEventListener('dblclick', function (e) {
+            e.preventDefault();
+        }, { passive: false });
+
+        // Initialize with active nav link
+        document.querySelector('nav a[href="#about"]').classList.add('active');
+    </script>
 </body>
+
 </html>
