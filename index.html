@@ -179,13 +179,6 @@
             padding: 2px 6px;
             font-size: 0.8rem;
             margin-left: 5px;
-            animation: none;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
         }
 
         /* Mobile sections */
@@ -246,28 +239,7 @@
             border: 2px solid var(--primary-blue);
         }
 
-        /* Products section enhancements */
-        .products-filter {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .products-filter input,
-        .products-filter select {
-            padding: 8px;
-            border-radius: 6px;
-            border: 1px solid var(--section-border);
-            background: var(--card-bg);
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        .products-filter input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
+        /* Products grid for mobile */
         .products {
             display: grid;
             grid-template-columns: 1fr;
@@ -281,12 +253,6 @@
             text-align: center;
             box-shadow: var(--product-card-shadow);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .product:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--product-card-hover-shadow);
         }
 
         .product img {
@@ -296,28 +262,10 @@
             border-radius: 10px;
         }
 
-        .product h3 {
-            font-size: 1.2rem;
-            margin: 10px 0 5px;
-            color: var(--accent-green);
-        }
-
         .product p {
             font-size: 1.1rem;
-            margin: 5px 0;
+            margin: 10px 0;
             color: var(--accent-green);
-        }
-
-        .product .description {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            margin-bottom: 10px;
-        }
-
-        .product .stock {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            margin-bottom: 10px;
         }
 
         .product button {
@@ -328,18 +276,6 @@
             border: none;
             border-radius: 6px;
             font-size: 0.9rem;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .product button:disabled {
-            background: #555;
-            cursor: not-allowed;
-        }
-
-        .product button:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 255, 213, 0.4);
         }
 
         /* Contact section */
@@ -379,19 +315,12 @@
             font-size: 1.1rem;
             display: none;
             z-index: 999;
-            cursor: pointer;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 10px var(--box-shadow-dark);
-            transition: transform 0.2s ease;
-        }
-
-        #scrollToTopBtn:hover {
-            transform: translateY(-3px);
         }
 
         #scrollToTopBtn.show {
             display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* Theme toggle */
@@ -410,13 +339,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 10px var(--box-shadow-dark);
-            transition: transform 0.2s ease;
-        }
-
-        #themeToggle:hover {
-            transform: scale(1.1);
         }
 
         /* Confetti for mobile */
@@ -438,6 +360,7 @@
             animation: confetti-fall 1.5s forwards;
         }
 
+        /* Keyframe animations simplified for mobile */
         @keyframes confetti-fall {
             0% {
                 transform: translate(0, 0) rotate(0deg);
@@ -448,186 +371,6 @@
                 transform: translate(var(--x), var(--y)) rotate(var(--r));
                 opacity: 0;
             }
-        }
-
-        /* Shopping Cart Modal */
-        .cart-modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .cart-modal-overlay.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .cart-modal {
-            background: var(--section-bg);
-            border-radius: 15px;
-            padding: 25px;
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 0 10px 30px var(--box-shadow-dark);
-            border: 1px solid var(--section-border);
-            position: relative;
-            max-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-        }
-
-        .cart-modal h3 {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--accent-green);
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-            text-shadow: 0 0 5px rgba(0, 255, 213, 0.5);
-        }
-
-        .cart-items {
-            flex-grow: 1;
-            overflow-y: auto;
-            margin-bottom: 20px;
-            padding-right: 10px;
-        }
-
-        .cart-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
-        }
-
-        .cart-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .cart-item img {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-            border-radius: 8px;
-            border: 1px solid rgba(0, 255, 213, 0.3);
-        }
-
-        .cart-item-details {
-            flex-grow: 1;
-            color: var(--text-light);
-        }
-
-        .cart-item-details h4 {
-            margin: 0 0 5px;
-            font-size: 1rem;
-            color: var(--accent-green);
-        }
-
-        .cart-item-details p {
-            margin: 0;
-            font-size: 0.9rem;
-            color: var(--text-light);
-        }
-
-        .cart-item-quantity {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .cart-item-quantity button {
-            background: var(--primary-blue);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            width: 25px;
-            height: 25px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.2s ease;
-        }
-
-        body.light-mode .cart-item-quantity button {
-            background: #4fc3f7;
-        }
-
-        .cart-item-quantity button:hover {
-            background: var(--secondary-purple);
-        }
-
-        body.light-mode .cart-item-quantity button:hover {
-            background: #81d4fa;
-        }
-
-        .cart-item-quantity span {
-            font-size: 1rem;
-            color: var(--text-light);
-            min-width: 20px;
-            text-align: center;
-        }
-
-        .cart-total {
-            text-align: right;
-            font-size: 1rem;
-            font-weight: bold;
-            color: var(--accent-green);
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .cart-total p {
-            margin: 5px 0;
-        }
-
-        .cart-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .cart-actions button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        #checkoutBtn {
-            background: linear-gradient(45deg, var(--accent-green), var(--primary-blue));
-            color: var(--text-dark);
-        }
-
-        #checkoutBtn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 255, 213, 0.4);
-        }
-
-        #closeCartBtn {
-            background: #e74c3c;
-            color: white;
-        }
-
-        #closeCartBtn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
         }
 
         /* Media queries for very small devices */
@@ -656,30 +399,6 @@
             .video-wrapper iframe {
                 height: 180px;
             }
-
-            .cart-modal {
-                padding: 15px;
-            }
-
-            .cart-modal h3 {
-                font-size: 1.3rem;
-            }
-
-            .cart-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-                text-align: left;
-            }
-
-            .cart-item-quantity {
-                width: 100%;
-                justify-content: space-between;
-            }
-
-            .products-filter {
-                flex-direction: column;
-            }
         }
 
         /* Landscape orientation adjustments */
@@ -704,4 +423,188 @@
             }
 
             nav {
-                paddin
+                padding: 8px 5px;
+            }
+
+            nav a {
+                padding: 6px 8px;
+                font-size: 0.8rem;
+            }
+
+            section {
+                padding: 20px 12px;
+                margin: 15px 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header id="mainHeader">
+        <div class="header-container">
+            <img src="yashhhhihoih.PNG" alt="Yash Nawarange">
+            <div>
+                <h1>Yash Nawarange</h1>
+                <p>HTML | CSS | JavaScript | AR/VR | Python</p>
+            </div>
+        </div>
+    </header>
+
+    <nav id="mainNav">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#products" class="nav-link">Products <span class="cart-count" id="cartCount">0</span></a>
+        <a href="#goals" class="nav-link">Goals</a>
+        <a href="#interests" class="nav-link">Interests</a>
+        <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p><strong>// BIOGRAPHY</strong><br>
+            I'm a passionate developer who loves turning ideas into real, working products. Whether it's designing clean
+            UI/UX for web apps, building backend logic, or experimenting with new technologies, I'm always up for a
+            challenge.
+        </p>
+        <p><strong>// PERSONAL DETAILS</strong></p>
+        <ul>
+            <li>Name: Yash Nawarange</li>
+            <li>Address: Dahanu, Maharashtra</li>
+            <li>Study: St. John College of Engineering and Management</li>
+            <li>Degree: B-Tech in Computer Engineering</li>
+            <li>Mail: 123yash2133@sjcem.edu.in</li>
+            <li>Phone: 7498533950</li>
+        </ul>
+    </section>
+
+    <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/QubLEQuRWgw" title="A Relevant YouTube Video About My Work"
+            frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <ul>
+            <li>Built a full-stack notes app with login, search, and dark mode</li>
+            <li>Created a first-person shooter prototype in Unity using C#</li>
+            <li>Designed and deployed responsive portfolio and blog websites</li>
+            <li>Explored backend development using Node.js, Express, and MongoDB</li>
+            <li>Dabbled in Python for automation scripts and data parsing</li>
+        </ul>
+    </section>
+
+    <section id="products">
+        <h2>Products</h2>
+        <div class="products">
+            <div class="product">
+                <a href="https://www.amazon.in/dp/B08N5WRWNW" target="_blank">
+                    <img src="https://m.media-amazon.com/images/I/61mIUCd-37L._SX679_.jpg" alt="RGB Gaming Mouse">
+                </a>
+                <p>oneplus 10r 5g </p>
+                <button onclick="addToCart(event)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <a href="https://www.amazon.in/dp/B07WHS7D9P" target="_blank">
+                    <img src="https://m.media-amazon.com/images/I/81Zt42ioCgL._SX679_.jpg" alt="Mechanical Keyboard">
+                </a>
+                <p>Monitor 4k screen </p>
+                <button onclick="addToCart(event)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <a href="https://www.amazon.in/dp/B098T2WGD1" target="_blank">
+                    <img src="https://m.media-amazon.com/images/I/81rkZyPRvML._SX679_.jpg" alt="HD Webcam">
+                </a>
+                <p>HD Webcam</p>
+                <button onclick="addToCart(event)">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="goals">
+        <h2>Goals</h2>
+        <ul>
+            <li>🌟 Master full-stack development with scalable cloud infrastructure</li>
+            <li>🤖 Build AI-powered web applications with machine learning</li>
+            <li>🎮 Develop a multiplayer FPS game using Unity</li>
+            <li>📱 Launch cross-platform mobile apps with Flutter</li>
+            <li>🔧 Contribute to open-source developer tools</li>
+        </ul>
+    </section>
+
+    <section id="interests">
+        <h2>Interests</h2>
+        <ul>
+            <li>🎨 Art: I enjoy sketching and digital design</li>
+            <li>🎬 Movies: Sci-fi and superhero films</li>
+            <li>♟️ Chess: For mental exercise and strategy</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>Email: <a href="mailto:123yash2133@sjcem.edu.in">123yash2133@sjcem.edu.in</a></p>
+        <p>Phone: <a href="tel:+917498533950">+91 74985 33950</a></p>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3753.8449767222374!2d72.7759530752158!3d19.800049781619866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be723466141443b%3A0x103a8917804473e0!2sSt.%20John%20College%20of%20Engineering%20and%20Management!5e0!3m2!1sen!2sin!4v1701980838634!5m2!1sen!2sin"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="St John College of Engineering and Management, Palghar"></iframe>
+    </section>
+
+    <footer>
+        <p>© 2025 Yash Nawarange. All rights reserved.</p>
+    </footer>
+
+    <button id="scrollToTopBtn" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <button id="themeToggle" title="Toggle Light/Dark Mode">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS with mobile-friendly settings
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 600,
+            easing: 'ease-out-sine',
+            disable: window.innerWidth < 768
+        });
+
+        // Cart functionality
+        let cartCount = 0;
+        const cartCountElement = document.getElementById("cartCount");
+        const confettiContainer = document.getElementById("confettiContainer");
+
+        function addToCart(event) {
+            cartCount++;
+            cartCountElement.innerText = cartCount;
+
+            // Trigger pulse animation
+            cartCountElement.style.animation = 'none';
+            void cartCountElement.offsetWidth;
+            cartCountElement.style.animation = 'pulse 1s';
+
+            // Confetti effect
+            const btn = event.target;
+            const rect = btn.getBoundingClientRect();
+            const btnCenterX = rect.left + rect.width / 2;
+            const btnCenterY = rect.top + rect.height / 2;
+
+            spawnConfetti(btnCenterX, btnCenterY);
+        }
+
+        function spawnConfetti(x, y) {
+            const colors = ['#00ffd5', '#2575fc', '#6a11cb', '#e74c3c', '#f1c40f'];
+            const numConfetti = 25;
+
+            for (let i = 0; i < numConfetti; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = `${x}px`;
+                confetti.style.top = `${y}px`;
